@@ -16,73 +16,37 @@ using System.Media;
 
 namespace PrisaaAttendance {
     public partial class FrmMain : Form {
-        FilterInfoCollection filterInfoCollection;
-        VideoCaptureDevice videoCaptureDevice;
+        //FilterInfoCollection filterInfoCollection;
         DbTransactions transact = new DbTransactions();
         string currDateTime = DateTime.Now.ToString("hh:mm:s tt");
         string today = DateTime.Now.ToString("MMMM dd, yyyy");
-        string today1 = DateTime.Now.ToShortDateString();
+        ScannerImplementation scn;
         public FrmMain() {
             InitializeComponent();
             timerTimeRef.Start();
             lblVerified.Text = "to UCV!";
+            scn = new ScannerImplementation(userScrn);
         }
 
 
         private void FrmMain_Load(object sender, EventArgs e) {
-             lblVerified.Text = "to UCV!";
-            
-            filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            foreach(FilterInfo item in filterInfoCollection) {
-                cmbCamera.Items.Add(item.Name);
-            }
-            try {
-                cmbCamera.SelectedIndex = 1;
-            }catch(Exception x) {
-                cmbCamera.SelectedIndex = 0;
-            }
-            
-            lblDate.Text = today;
-
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cmbCamera.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            lblVerified.Text = "to UCV!";
+            scn.cameraList(cmbCamera);//populate combobox for camera
+            scn.cameraStart(); // initialize frame/picturebox for capturing
+            lblDate.Text = today; //display current date
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
-
-            if (videoCaptureDevice.IsRunning) {
-                btnStart.Text = "Start";
-                timer1.Stop();
-                videoCaptureDevice.Stop();
-                userScrn.ImageLocation = "./img/Web.png";
-                //userScrn.Image = "./img/Web.png";
+            scn.scanStart(); //Camera start capturing
+            btnStart.Text = scn.btnLabel;
+            if (scn.videoCaptureDevice.IsRunning) {
+                timer1.Start();
+                lblVerified.Text = "to UCV!";
 
             } else {
-                
-                btnStart.Text = "Stop";
-                lblVerified.Text = "to UCV!";
-                userScrn.Image = null;
-                timer1.Start();
-                videoCaptureDevice.Start();
-                
-            }
-
-
-        }
-
-        private void restartVideo() {
-            if (videoCaptureDevice.IsRunning) {
-                btnStart.Text = "Start";
+                userScrn.Image = null; 
                 timer1.Stop();
-                videoCaptureDevice.Stop();
-                userScrn.ImageLocation = "./img/Web.png";
-
             }
-        }
-
-        private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs) {
-            userScrn.Image = (Bitmap)eventArgs.Frame.Clone();
-
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
@@ -97,12 +61,12 @@ namespace PrisaaAttendance {
                     //lblName.Text = txtQrContent.Lines[0];
                     
                     try {
-                        name = txtQrContent.Lines[0];
+                        name = scn.validateData(txtQrContent.Lines[0]);
                         if (name == "Dr. Edward Y. Chua") {
                             name = "Dr. Edison Y. Chua";
                         }
-                        position = txtQrContent.Lines[1]; 
-                        position1 = txtQrContent.Lines[2]; 
+                        position = scn.validateData(txtQrContent.Lines[1]); 
+                        position1 = scn.validateData(txtQrContent.Lines[2]); 
                     }catch(Exception ex) { /*none*/ }
                     
                     
@@ -206,14 +170,6 @@ namespace PrisaaAttendance {
             OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source = .\\Attendance.accdb");
             RegisterAccount regFrm = new RegisterAccount();
             regFrm.ShowDialog();
-            
-            /*try {
-                MessageBox.Show("Eyyy Successs");
-
-            }catch(Exception ex) {
-                MessageBox.Show("Database is inaccessible","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }*/
-
         }
 
         private void timerTimeRef_Tick(object sender, EventArgs e) {
@@ -222,17 +178,13 @@ namespace PrisaaAttendance {
         }
 
         private void FrmMain_FormClosed(object sender, FormClosedEventArgs e) {
-            if (videoCaptureDevice.IsRunning) {
-                videoCaptureDevice.Stop();
-            }
+            scn.scanStop();
             Application.Exit();
         }
 
 
         private void FrmMain_FormClosing_1(object sender, FormClosingEventArgs e) {
-            if (videoCaptureDevice.IsRunning) {
-                videoCaptureDevice.Stop();
-            }
+            scn.scanStop();
         }
 
         private void timerRefresh_Tick(object sender, EventArgs e) {
@@ -242,9 +194,12 @@ namespace PrisaaAttendance {
 
 
         private void cmbCamera_SelectionChangeCommitted(object sender, EventArgs e) {
-            restartVideo();
-            videoCaptureDevice = new VideoCaptureDevice(filterInfoCollection[cmbCamera.SelectedIndex].MonikerString);
-            videoCaptureDevice.NewFrame += VideoCaptureDevice_NewFrame;
+            scn.cameraRestart();
+            btnStart.Text = scn.btnLabel;
+            userScrn = scn.picBox; 
+            timer1.Stop();
+            
+            scn.cameraStart(cmbCamera.SelectedIndex);
         }
     }
 }
