@@ -63,13 +63,8 @@ namespace PrisaaAttendance {
                 if (result != null) {
                     txtQrContent.Text = result.ToString();
 
-                    //lblName.Text = txtQrContent.Lines[0];
-                    
                     try {
                         name = scn.validateData(txtQrContent.Lines[0]);
-                        if (name == "Dr. Edward Y. Chua") {
-                            name = "Dr. Edison Y. Chua";
-                        }
                         position = scn.validateData(txtQrContent.Lines[1]); 
                         position1 = scn.validateData(txtQrContent.Lines[2]); 
                     }catch(Exception ex) { /*none*/ }
