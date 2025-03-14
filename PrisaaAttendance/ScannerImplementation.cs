@@ -53,9 +53,9 @@ namespace PrisaaAttendance {
 
         /*CAPTURE EVERY FRAME*/
         private void VideoCaptureDevice_NewFrame(object sender, NewFrameEventArgs eventArgs) {
-
+            
             capturedImage = (Bitmap)eventArgs.Frame.Clone();
-            capturedImage.RotateFlip(RotateFlipType.RotateNoneFlipX);
+            capturedImage.RotateFlip(RotateFlipType.RotateNoneFlipX); //TO MIRROR CAMERA
             picBox.Image = capturedImage;
             
 
