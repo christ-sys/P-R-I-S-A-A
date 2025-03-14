@@ -15,5 +15,7 @@ namespace PrisaaAttendance {
         public abstract void cameraRestart();
         public abstract string validateData(string data);
         public abstract string readQR();
+        public abstract void validSound(string soundPath);
+
     }
 }
