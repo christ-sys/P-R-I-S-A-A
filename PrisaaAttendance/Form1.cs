@@ -76,22 +76,16 @@ namespace PrisaaAttendance {
                         sql = $"INSERT INTO {refTable}(FullName,Designation,Designation1,RDate,RTime) VALUES('{name}','{position}','{position1}','{DateTime.Now.ToShortDateString()}','{currDateTime:hh:mm:s tt}')";
                         try {
                             transact.AddRecord(sql);
-                            using (var soundPlayer = new SoundPlayer(@"./audio/Correct Sound.wav")) {
-                                soundPlayer.Play(); // can also use soundPlayer.PlaySync()
-                            }
+                            scn.playSound("./audio/Correct Sound.wav");
                             lblVerified.Text = name;
                             
                         } catch (Exception ex) {
-                            using (var soundPlayer = new SoundPlayer(@"./audio/Error Alert.wav")) {
-                                soundPlayer.Play(); // can also use soundPlayer.PlaySync()
-                            }
+                            scn.playSound("./audio/Error Alert.wav");
                             lblVerified.Text = "Please try again!";
                         }
 
                     } else {
-                        using (var soundPlayer = new SoundPlayer(@"./audio/Correct Sound.wav")) {
-                            soundPlayer.Play(); // can also use soundPlayer.PlaySync()
-                        }
+                        scn.playSound("./audio/Correct Sound.wav");
                         lblName.Text = "Already Registered!";
                         lblVerified.Text = name;
                         
