@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -114,6 +115,12 @@ namespace PrisaaAttendance {
 
 
             return result.ToString();
+        }
+
+        public override void validSound(string soundPath) {
+            using (var soundPlayer = new SoundPlayer(@soundPath)) {
+                soundPlayer.Play(); // can also use soundPlayer.PlaySync()
+            }
         }
 
 
