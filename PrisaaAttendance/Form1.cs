@@ -21,12 +21,14 @@ namespace PrisaaAttendance {
         string currDateTime = DateTime.Now.ToString("hh:mm:s tt");
         string today = DateTime.Now.ToString("MMMM dd, yyyy");
         ScannerImplementation scn;
+        string refTable;
         public FrmMain() {
             InitializeComponent();
             timerTimeRef.Start();
             //lblVerified.Text = "to UCV!";
             scn = new ScannerImplementation(userScrn);
             lblVerified.Text = scn.lblWelcome;
+            refTable = "Registration";
         }
 
 
@@ -52,9 +54,6 @@ namespace PrisaaAttendance {
 
         private void timer1_Tick(object sender, EventArgs e) {
             if (userScrn.Image != null) {
-                /*string scannedText = scn.readQR();
-                MessageBox.Show(scannedText);*/
-
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)userScrn.Image); //ICHN
                 string name = "";
@@ -70,18 +69,17 @@ namespace PrisaaAttendance {
                     }catch(Exception ex) { /*none*/ }
                     
                     
-                    string sql = $"SELECT ID from Registration WHERE FullName = '{name}'";
+                    string sql = $"SELECT ID from {refTable} WHERE FullName = '{name}'";
                     int UID = transact.SearchProfile(sql); //check if profile is in registered
 
-                    if (UID == 0) {
-                        sql = $"INSERT INTO Registration(FullName,Designation,Designation1,RDate,RTime) VALUES('{name}','{position}','{position1}','{DateTime.Now.ToShortDateString()}','{currDateTime:hh:mm:s tt}')";
+                    if (UID == 0) { // ADD IF ALREADY EXISTS
+                        sql = $"INSERT INTO {refTable}(FullName,Designation,Designation1,RDate,RTime) VALUES('{name}','{position}','{position1}','{DateTime.Now.ToShortDateString()}','{currDateTime:hh:mm:s tt}')";
                         try {
                             transact.AddRecord(sql);
                             using (var soundPlayer = new SoundPlayer(@"./audio/Correct Sound.wav")) {
                                 soundPlayer.Play(); // can also use soundPlayer.PlaySync()
                             }
                             lblVerified.Text = name;
-                            //sound here
                             
                         } catch (Exception ex) {
                             using (var soundPlayer = new SoundPlayer(@"./audio/Error Alert.wav")) {
@@ -97,60 +95,8 @@ namespace PrisaaAttendance {
                         lblName.Text = "Already Registered!";
                         lblVerified.Text = name;
                         
-
                     }
 
-
-                    
-
-
-
-
-                    /* if (UID != 0) {
-
-                         sql = $"SELECT ID from Record WHERE UID = {UID} AND Date1 = '{DateTime.Now.ToShortDateString()}'";
-                         int myID = transact.SearchProfile(sql);
-
-                         if (myID != 0) {
-                             //Record Found update in and out
-
-                             sql = $"SELECT * FROM Record WHERE ID={myID} AND Date1 = '{today1}'";
-                             DataTable recordData = transact.fetch_rowData(sql);
-
-                             //update the selected record
-                             foreach (DataRow row in recordData.Rows) {
-                                 foreach (DataColumn col in recordData.Columns) {
-                                     if (row.IsNull(col)) {
-                                         //MessageBox.Show($"{col.ColumnName} is empty");
-                                         sql = $"UPDATE Record SET {col.ColumnName} = '{currDateTime:hh:mm:s tt}'  WHERE ID = {myID}";
-                                         transact.UpdateRecord(sql);
-                                         if (col.ColumnName=="Out0" || col.ColumnName == "Out1" || col.ColumnName == "Out2") {
-                                             lblVerified.Text = "Timed Out";
-                                         } else {
-                                             lblVerified.Text = "Timed In";
-                                         }
-
-                                         break;
-                                     }
-                                     if (!row.IsNull(col)) {
-                                         lblVerified.Text = "Reached 3 scans";
-                                     }
-                                 }
-                             }
-
-                         } else {
-                             //new record must add
-
-                             sql = $"INSERT INTO Record(UID,Date1,In0) VALUES({UID},'{DateTime.Now.ToShortDateString()}','{currDateTime:hh:mm:s tt}')";
-                            // MessageBox.Show(sql);
-                            transact.AddRecord(sql);
-                            // MessageBox.Show(UID+" "+today + " "+currDateTime);
-                         }
-
-
-                     } else {
-                         lblVerified.Text = "UNVERIFIED";
-                     }*/
 
                     if (timerRefresh.Enabled) {
                         timerRefresh.Stop();
@@ -189,7 +135,6 @@ namespace PrisaaAttendance {
 
         private void timerRefresh_Tick(object sender, EventArgs e) {
             lblVerified.Text = scn.lblWelcome;
-            //lblName.Text = "Welcome,";
         }
 
 
