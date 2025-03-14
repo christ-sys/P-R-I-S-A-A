@@ -24,15 +24,16 @@ namespace PrisaaAttendance {
         public FrmMain() {
             InitializeComponent();
             timerTimeRef.Start();
-            lblVerified.Text = "to UCV!";
+            //lblVerified.Text = "to UCV!";
             scn = new ScannerImplementation(userScrn);
+            lblVerified.Text = scn.lblWelcome;
         }
 
 
         private void FrmMain_Load(object sender, EventArgs e) {
-            lblVerified.Text = "to UCV!";
+            lblVerified.Text = scn.lblWelcome;
             scn.cameraList(cmbCamera);//populate combobox for camera
-            scn.cameraStart(); // initialize frame/picturebox for capturing
+            scn.cameraInit(); // initialize frame/picturebox for capturing
             lblDate.Text = today; //display current date
         }
 
@@ -41,7 +42,7 @@ namespace PrisaaAttendance {
             btnStart.Text = scn.btnLabel;
             if (scn.videoCaptureDevice.IsRunning) {
                 timer1.Start();
-                lblVerified.Text = "to UCV!";
+                lblVerified.Text = scn.lblWelcome;
 
             } else {
                 userScrn.Image = null; 
@@ -51,6 +52,9 @@ namespace PrisaaAttendance {
 
         private void timer1_Tick(object sender, EventArgs e) {
             if (userScrn.Image != null) {
+                /*string scannedText = scn.readQR();
+                MessageBox.Show(scannedText);*/
+
                 BarcodeReader barcodeReader = new BarcodeReader();
                 Result result = barcodeReader.Decode((Bitmap)userScrn.Image); //ICHN
                 string name = "";
@@ -58,6 +62,7 @@ namespace PrisaaAttendance {
                 string position1 = "";
                 if (result != null) {
                     txtQrContent.Text = result.ToString();
+
                     //lblName.Text = txtQrContent.Lines[0];
                     
                     try {
@@ -188,7 +193,7 @@ namespace PrisaaAttendance {
         }
 
         private void timerRefresh_Tick(object sender, EventArgs e) {
-            lblVerified.Text = "to UCV!";
+            lblVerified.Text = scn.lblWelcome;
             //lblName.Text = "Welcome,";
         }
 
@@ -199,7 +204,7 @@ namespace PrisaaAttendance {
             userScrn = scn.picBox; 
             timer1.Stop();
             
-            scn.cameraStart(cmbCamera.SelectedIndex);
+            scn.cameraInit(cmbCamera.SelectedIndex);
         }
     }
 }
