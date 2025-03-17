@@ -31,7 +31,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblVerified = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
@@ -39,19 +38,20 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.timerTimeRef = new System.Windows.Forms.Timer(this.components);
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.PrisaaLogo = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.userScrn = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnRegister = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrisaaLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userScrn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStart
@@ -94,40 +94,29 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 44);
+            this.panel1.Size = new System.Drawing.Size(860, 44);
             this.panel1.TabIndex = 5;
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.txtQrContent);
-            this.panel2.Controls.Add(this.userScrn);
-            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.PrisaaLogo);
             this.panel2.Controls.Add(this.lblVerified);
             this.panel2.Controls.Add(this.lblName);
-            this.panel2.Controls.Add(this.lblDate);
             this.panel2.Controls.Add(this.lblTime);
+            this.panel2.Controls.Add(this.txtQrContent);
+            this.panel2.Controls.Add(this.lblDate);
+            this.panel2.Controls.Add(this.userScrn);
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 44);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(800, 406);
+            this.panel2.Size = new System.Drawing.Size(860, 406);
             this.panel2.TabIndex = 6;
-            // 
-            // panel4
-            // 
-            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.panel4.BackColor = System.Drawing.SystemColors.Control;
-            this.panel4.Controls.Add(this.PrisaaLogo);
-            this.panel4.Controls.Add(this.pictureBox1);
-            this.panel4.Location = new System.Drawing.Point(399, 0);
-            this.panel4.MaximumSize = new System.Drawing.Size(600, 250);
-            this.panel4.Name = "panel4";
-            this.panel4.Padding = new System.Windows.Forms.Padding(0, 50, 0, 0);
-            this.panel4.Size = new System.Drawing.Size(401, 141);
-            this.panel4.TabIndex = 14;
             // 
             // panel3
             // 
@@ -152,21 +141,21 @@
             this.lblVerified.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblVerified.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVerified.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblVerified.Location = new System.Drawing.Point(438, 190);
+            this.lblVerified.Location = new System.Drawing.Point(414, 192);
             this.lblVerified.Name = "lblVerified";
-            this.lblVerified.Size = new System.Drawing.Size(328, 65);
+            this.lblVerified.Size = new System.Drawing.Size(434, 60);
             this.lblVerified.TabIndex = 9;
             this.lblVerified.Text = "to UCV!";
             this.lblVerified.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblName
             // 
-            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblName.AutoEllipsis = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(438, 127);
+            this.lblName.Location = new System.Drawing.Point(414, 140);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(328, 74);
+            this.lblName.Size = new System.Drawing.Size(434, 39);
             this.lblName.TabIndex = 8;
             this.lblName.Text = "Welcome";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -176,9 +165,9 @@
             this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(438, 255);
+            this.lblDate.Location = new System.Drawing.Point(420, 300);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(328, 37);
+            this.lblDate.Size = new System.Drawing.Size(388, 37);
             this.lblDate.TabIndex = 6;
             this.lblDate.Text = "September 11,2024";
             // 
@@ -187,9 +176,9 @@
             this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 33F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTime.Location = new System.Drawing.Point(434, 292);
+            this.lblTime.Location = new System.Drawing.Point(416, 337);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(328, 56);
+            this.lblTime.Size = new System.Drawing.Size(388, 56);
             this.lblTime.TabIndex = 5;
             this.lblTime.Text = "00:00:00";
             // 
@@ -202,28 +191,29 @@
             this.timerRefresh.Interval = 10000;
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.LightSteelBlue;
+            this.label2.Location = new System.Drawing.Point(54, 5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(320, 32);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "University Of Cagayan Valley";
+            // 
             // PrisaaLogo
             // 
-            this.PrisaaLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.PrisaaLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.PrisaaLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.PrisaaLogo.Image = global::PrisaaAttendance.Properties.Resources.Prisaa;
-            this.PrisaaLogo.Location = new System.Drawing.Point(87, 16);
+            this.PrisaaLogo.Image = global::PrisaaAttendance.Properties.Resources.PrisaaBanner;
+            this.PrisaaLogo.Location = new System.Drawing.Point(532, 13);
+            this.PrisaaLogo.MaximumSize = new System.Drawing.Size(300, 200);
             this.PrisaaLogo.Name = "PrisaaLogo";
-            this.PrisaaLogo.Size = new System.Drawing.Size(117, 116);
-            this.PrisaaLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PrisaaLogo.Size = new System.Drawing.Size(192, 124);
+            this.PrisaaLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PrisaaLogo.TabIndex = 11;
             this.PrisaaLogo.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.pictureBox1.Image = global::PrisaaAttendance.Properties.Resources._201666_2256_43793_copy;
-            this.pictureBox1.Location = new System.Drawing.Point(210, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 116);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
             // 
             // userScrn
             // 
@@ -277,11 +267,22 @@
             this.label1.TabIndex = 3;
             this.label1.Text = ".";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBox1.Image = global::PrisaaAttendance.Properties.Resources._201666_2256_43793_copy;
+            this.pictureBox1.Location = new System.Drawing.Point(6, -2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(860, 450);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -291,15 +292,16 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing_1);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrisaaLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userScrn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -324,8 +326,8 @@
         private System.Windows.Forms.Timer timerRefresh;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox PrisaaLogo;
-        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label2;
     }
 }
 
