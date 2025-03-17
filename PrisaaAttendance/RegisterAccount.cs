@@ -29,7 +29,7 @@ namespace PrisaaAttendance {
             barcodeWriter.Options = encodingOptions;
             barcodeWriter.Format = BarcodeFormat.QR_CODE;
             bitmap = barcodeWriter.Write(TxtInfo.Text);
-            Bitmap logo = new Bitmap($"{Application.StartupPath}/img/Prisaa.png");
+            Bitmap logo = new Bitmap($"{Application.StartupPath}/img/NatlPrisaaLogo.png");
             logo = new Bitmap(logo, 200, 200);
             //Bitmap logo = new Bitmap($"{Application.StartupPath}/foxlearn.png");
             Graphics g = Graphics.FromImage(bitmap);

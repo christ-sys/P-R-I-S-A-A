@@ -123,9 +123,39 @@ namespace PrisaaAttendance.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap NatlPrisaaLogo {
+            get {
+                object obj = ResourceManager.GetObject("NatlPrisaaLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NatlPrisaaLogo1 {
+            get {
+                object obj = ResourceManager.GetObject("NatlPrisaaLogo1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Prisaa {
             get {
                 object obj = ResourceManager.GetObject("Prisaa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PrisaaBanner {
+            get {
+                object obj = ResourceManager.GetObject("PrisaaBanner", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
