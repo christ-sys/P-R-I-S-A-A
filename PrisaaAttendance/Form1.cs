@@ -71,11 +71,12 @@ namespace PrisaaAttendance {
                     
                     string sql = $"SELECT ID from {refTable} WHERE FullName = '{name}'";
                     int UID = transact.SearchProfile(sql); //check if profile is in registered
-
-                    if (UID == 0) { // ADD IF ALREADY EXISTS
+                    //MessageBox.Show(UID.ToString());
+                    if (UID== 0) { // ADD IF ALREADY EXISTS
                         sql = $"INSERT INTO {refTable}(FullName,Designation,Designation1,RDate,RTime) VALUES('{name}','{position}','{position1}','{DateTime.Now.ToShortDateString()}','{currDateTime:hh:mm:s tt}')";
                         try {
                             transact.AddRecord(sql);
+                            lblName.Text = "Welcome";
                             scn.validSound("./audio/Correct Sound.wav");
                             lblVerified.Text = name;
                             
@@ -94,12 +95,9 @@ namespace PrisaaAttendance {
 
                     if (timerRefresh.Enabled) {
                         timerRefresh.Stop();
-                        lblName.Text = "Welcome";
-                        timerRefresh.Start();
-                    } else {
-
-                        timerRefresh.Start();
-                    }
+                    } 
+                    timerRefresh.Start();
+                    
                 }
             }
         }
@@ -129,6 +127,7 @@ namespace PrisaaAttendance {
 
         private void timerRefresh_Tick(object sender, EventArgs e) {
             lblVerified.Text = scn.lblWelcome;
+            lblName.Text = "Welcome";
         }
 
 
