@@ -30,7 +30,12 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.userScrn = new System.Windows.Forms.PictureBox();
             this.timerTimeRef = new System.Windows.Forms.Timer(this.components);
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
@@ -41,19 +46,14 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.txtQrContent = new System.Windows.Forms.TextBox();
             this.lblDate = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnRegister = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.userScrn = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrisaaLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStart
@@ -106,6 +106,17 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "University Of Cagayan Valley";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBox1.Image = global::PrisaaAttendance.Properties.Resources._201666_2256_43793_copy;
+            this.pictureBox1.Location = new System.Drawing.Point(6, -2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -122,13 +133,65 @@
             this.panel3.Size = new System.Drawing.Size(399, 533);
             this.panel3.TabIndex = 10;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
+            this.pictureBox2.Location = new System.Drawing.Point(52, 28);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(41, 32);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRegister.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.BackgroundImage = global::PrisaaAttendance.Properties.Resources.add;
+            this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRegister.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnRegister.Location = new System.Drawing.Point(12, 488);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(32, 31);
+            this.btnRegister.TabIndex = 7;
+            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label1.Location = new System.Drawing.Point(8, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(15, 24);
+            this.label1.TabIndex = 3;
+            this.label1.Text = ".";
+            // 
+            // userScrn
+            // 
+            this.userScrn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.userScrn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.userScrn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.userScrn.Image = global::PrisaaAttendance.Properties.Resources.Web;
+            this.userScrn.InitialImage = null;
+            this.userScrn.Location = new System.Drawing.Point(26, 77);
+            this.userScrn.Name = "userScrn";
+            this.userScrn.Size = new System.Drawing.Size(354, 336);
+            this.userScrn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userScrn.TabIndex = 0;
+            this.userScrn.TabStop = false;
+            // 
             // timerTimeRef
             // 
             this.timerTimeRef.Tick += new System.EventHandler(this.timerTimeRef_Tick);
             // 
             // timerRefresh
             // 
-            this.timerRefresh.Interval = 10000;
+            this.timerRefresh.Interval = 5000;
             this.timerRefresh.Tick += new System.EventHandler(this.timerRefresh_Tick);
             // 
             // panel2
@@ -235,69 +298,6 @@
             this.lblDate.TabIndex = 6;
             this.lblDate.Text = "September 11,2024";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
-            this.pictureBox2.Location = new System.Drawing.Point(52, 28);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(41, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 8;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnRegister
-            // 
-            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRegister.BackColor = System.Drawing.Color.Transparent;
-            this.btnRegister.BackgroundImage = global::PrisaaAttendance.Properties.Resources.add;
-            this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRegister.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnRegister.Location = new System.Drawing.Point(12, 488);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(32, 31);
-            this.btnRegister.TabIndex = 7;
-            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRegister.UseVisualStyleBackColor = false;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label1.Location = new System.Drawing.Point(8, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 24);
-            this.label1.TabIndex = 3;
-            this.label1.Text = ".";
-            // 
-            // userScrn
-            // 
-            this.userScrn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.userScrn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.userScrn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.userScrn.Image = global::PrisaaAttendance.Properties.Resources.Web;
-            this.userScrn.InitialImage = null;
-            this.userScrn.Location = new System.Drawing.Point(26, 77);
-            this.userScrn.Name = "userScrn";
-            this.userScrn.Size = new System.Drawing.Size(354, 336);
-            this.userScrn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userScrn.TabIndex = 0;
-            this.userScrn.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pictureBox1.Image = global::PrisaaAttendance.Properties.Resources._201666_2256_43793_copy;
-            this.pictureBox1.Location = new System.Drawing.Point(6, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -316,15 +316,15 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PrisaaLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
