@@ -43,29 +43,20 @@ namespace PrisaaAttendance {
             saveDialog.Title = "Save an image";
             String txtName = TxtInfo.Lines[0];
             saveDialog.FileName = $"{txtName}.jpg";
-            saveDialog.InitialDirectory = $"{Application.StartupPath}\\generated_qr";
+            String path = "../../../Generated QR";
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+            
+            Directory.SetCurrentDirectory(path);
+            saveDialog.InitialDirectory = $"{Directory.GetCurrentDirectory()}";
             DialogResult res;
             res = saveDialog.ShowDialog();
             
-
-
             if (saveDialog.FileName != "" && res == DialogResult.OK) {
-                /*if (File.Exists(saveDialog.FileName)) {
-                    saveDialog.FileName = $"{txtName}1.jpg";
-                }*/
-               
-                //System.IO.StreamWriter file = new System.IO.StreamWriter(saveDialog.FileName.ToString());
-               /* if (saveDialog.OverwritePrompt==false) {
-                   
-                   *//* saveDialog.FileName = $"{txtName}1.jpg";*//*
-
-                }*/
-                
-                    bitmap.Save(saveDialog.FileName.ToString(), ImageFormat.Jpeg);
-              
+                bitmap.Save(saveDialog.FileName.ToString(), ImageFormat.Jpeg);
             }
         }
-
 
 
         private void PicQr_Paint(object sender, PaintEventArgs e) {

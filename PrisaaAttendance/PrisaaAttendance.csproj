@@ -152,6 +152,7 @@
     <None Include="bin\Debug\img\NatlPrisaaLogo.png" />
     <None Include="bin\Debug\img\NatlPrisaaLogo1.png" />
     <None Include="bin\Debug\img\PrisaaBanner.png" />
+    <None Include="bin\Debug\img\PrisaaBanner bg.png" />
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
