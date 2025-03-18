@@ -78,7 +78,7 @@ namespace PrisaaAttendance {
                             transact.AddRecord(sql);
                             lblName.Text = "Welcome";
                             scn.validSound("./audio/Correct Sound.wav");
-                            lblVerified.Text = name;
+                            lblVerified.Text = name.Replace("''","'");
                             
                         } catch (Exception ex) {
                             scn.validSound("./audio/Error Alert.wav");
