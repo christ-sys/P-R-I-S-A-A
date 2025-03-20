@@ -86,7 +86,7 @@ namespace PrisaaAttendance {
                                     lblVerified.Text = name.Replace("''", "'");
                                 } catch (Exception) {error();}
                             } else {
-                                duplicate();
+                                duplicate(name);
                             }
 
                             break;
@@ -177,7 +177,7 @@ namespace PrisaaAttendance {
             scn.validSound("./audio/Error Alert.wav");
             lblVerified.Text = "Please try again!";
         }
-        private void duplicate() {
+        private void duplicate(string name) {
             scn.validSound("./audio/Correct Sound.wav");
             lblName.Text = "Already Registered!";
             lblVerified.Text = name;
