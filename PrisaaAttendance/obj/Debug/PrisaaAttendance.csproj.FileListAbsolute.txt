@@ -15,6 +15,7 @@ C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\De
 C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\Debug\PrisaaAttendance.FrmMain.resources
 C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\Debug\PrisaaAttendance.Properties.Resources.resources
 C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\Debug\PrisaaAttendance.RegisterAccount.resources
+C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\Debug\PrisaaAttendance.SettingForm.resources
 C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\Debug\PrisaaAttendance.csproj.GenerateResource.cache
 C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\Debug\PrisaaAttendance.csproj.CoreCompileInputs.cache
 C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\obj\Debug\PrisaaAttendance.csproj.CopyComplete
