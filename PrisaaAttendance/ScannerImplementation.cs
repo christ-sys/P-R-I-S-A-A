@@ -2,6 +2,7 @@
 using AForge.Video.DirectShow;
 using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Media;
@@ -9,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZXing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PrisaaAttendance {
     public class ScannerImplementation : Scanner {
@@ -19,6 +21,10 @@ namespace PrisaaAttendance {
         public string btnLabel;
         public string lblWelcome;
         private Bitmap capturedImage;
+        private int registrationType;
+
+       
+
         public ScannerImplementation(PictureBox p) {
             cameraSelected = 0;
             this.picBox = p;
@@ -27,6 +33,10 @@ namespace PrisaaAttendance {
             btnLabel = "Start";
             capturedImage = null;
         }
+        public ScannerImplementation() {
+            registrationType = 0;
+        }
+
 
         /*POPULATE CAMERA ON THE CMB BOX*/
         public override void cameraList(ComboBox cmb) {
@@ -123,7 +133,29 @@ namespace PrisaaAttendance {
             }
         }
 
+       /* public void setRegistrationType(int type) {
+            this.registrationType = type;
+        }
+        public int getRegistrationType() {
+            return registrationType;
+        }*/
 
+        public void createTable(string tablename) {
+            DbTransactions transact =  new DbTransactions();
+            switch (SharedData.regType) {
+                case 0:
+                     transact.simpleTable(tablename);
+                     break;
+                case 1:
+                    transact.sessionTable(tablename);
+                    break;
+                case 2:
+                    transact.doubleSessionTable(tablename);
+                    break;
+            }
+            
+        }
 
+        
     }
 }

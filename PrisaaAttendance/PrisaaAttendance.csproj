@@ -96,6 +96,13 @@
     </Compile>
     <Compile Include="Scanner.cs" />
     <Compile Include="ScannerImplementation.cs" />
+    <Compile Include="SettingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingForm.Designer.cs">
+      <DependentUpon>SettingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharedData.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +118,9 @@
     </Compile>
     <EmbeddedResource Include="RegisterAccount.resx">
       <DependentUpon>RegisterAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingForm.resx">
+      <DependentUpon>SettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -153,6 +163,8 @@
     <None Include="bin\Debug\img\NatlPrisaaLogo1.png" />
     <None Include="bin\Debug\img\PrisaaBanner.png" />
     <None Include="bin\Debug\img\PrisaaBanner bg.png" />
+    <None Include="bin\Debug\img\configuration.png" />
+    <None Include="bin\Debug\img\setting.png" />
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>

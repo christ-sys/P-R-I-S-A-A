@@ -17,5 +17,7 @@ namespace PrisaaAttendance {
         public abstract string readQR();
         public abstract void validSound(string soundPath);
 
+        
+
     }
 }

@@ -12,6 +12,7 @@ using AForge.Video.DirectShow;
 using ZXing;
 using System.Data.OleDb;
 using System.Media;
+using ZXing.Common;
 
 
 namespace PrisaaAttendance {
@@ -28,7 +29,9 @@ namespace PrisaaAttendance {
             //lblVerified.Text = "to UCV!";
             scn = new ScannerImplementation(userScrn);
             lblVerified.Text = scn.lblWelcome;
-            refTable = "Registration";
+            SharedData.tableRef = "Registration";
+            refTable = SharedData.tableRef;
+            SharedData.regType = 0;
         }
 
 
@@ -50,6 +53,7 @@ namespace PrisaaAttendance {
                 userScrn.Image = null; 
                 timer1.Stop();
             }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e) {
@@ -69,10 +73,32 @@ namespace PrisaaAttendance {
                     }catch(Exception ex) { /*none*/ }
                     
                     
-                    string sql = $"SELECT ID from {refTable} WHERE FullName = '{name}'";
+                    string sql = $"SELECT ID from {refTable} WHERE Name = '{name}'";
                     int UID = transact.SearchProfile(sql); //check if profile is in registered
-                    //MessageBox.Show(UID.ToString());
-                    if (UID== 0) { // ADD IF ALREADY EXISTS
+
+                    switch (SharedData.regType) {
+                        case 0:
+                            if (UID == 0) { //unique record
+                                try {
+                                    transact.regtype1(name, DateTime.Now.ToShortDateString(), DateTime.Now.ToString("hh:mm:s tt"), position, position1);
+                                    lblName.Text = "Welcome";
+                                    scn.validSound("./audio/Correct Sound.wav");
+                                    lblVerified.Text = name.Replace("''", "'");
+                                } catch (Exception) {error();}
+                            } else {
+                                duplicate();
+                            }
+
+                            break;
+                        case 1:
+
+                            break;
+                        case 2:
+                            break;
+
+                    }
+
+                   /* if (UID== 0) { // ADD IF not registered
                         sql = $"INSERT INTO {refTable}(FullName,Designation,Designation1,RDate,RTime) VALUES('{name}','{position}','{position1}','{DateTime.Now.ToShortDateString()}','{currDateTime:hh:mm:s tt}')";
                         try {
                             transact.AddRecord(sql);
@@ -90,7 +116,7 @@ namespace PrisaaAttendance {
                         lblName.Text = "Already Registered!";
                         lblVerified.Text = name;
                         
-                    }
+                    }*/
 
 
                     if (timerRefresh.Enabled) {
@@ -138,6 +164,23 @@ namespace PrisaaAttendance {
             timer1.Stop();
             
             scn.cameraInit(cmbCamera.SelectedIndex);
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e) {
+            SettingForm setting = new SettingForm();
+            DialogResult res = DialogResult.None;
+            res = setting.ShowDialog();
+            refTable = SharedData.tableRef;
+        }
+
+        private void error() {
+            scn.validSound("./audio/Error Alert.wav");
+            lblVerified.Text = "Please try again!";
+        }
+        private void duplicate() {
+            scn.validSound("./audio/Correct Sound.wav");
+            lblName.Text = "Already Registered!";
+            lblVerified.Text = name;
         }
     }
 }
