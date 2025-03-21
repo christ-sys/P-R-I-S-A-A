@@ -1,16 +1,10 @@
 ﻿using AForge.Video;
 using AForge.Video.DirectShow;
 using System;
-using System.Collections.Generic;
-using System.Data.OleDb;
 using System.Drawing;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZXing;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace PrisaaAttendance {
     public class ScannerImplementation : Scanner {
