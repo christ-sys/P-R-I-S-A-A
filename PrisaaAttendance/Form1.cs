@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using AForge.Video;
-using AForge.Video.DirectShow;
 using ZXing;
 using System.Data.OleDb;
-using System.Media;
-using ZXing.Common;
 
 
 namespace PrisaaAttendance {
@@ -29,7 +19,7 @@ namespace PrisaaAttendance {
             //lblVerified.Text = "to UCV!";
             scn = new ScannerImplementation(userScrn);
             lblVerified.Text = scn.lblWelcome;
-            SharedData.tableRef = "Registration";
+            SharedData.tableRef = "temp1";
             refTable = SharedData.tableRef;
             SharedData.regType = 0;
         }
@@ -73,51 +63,46 @@ namespace PrisaaAttendance {
                     }catch(Exception ex) { /*none*/ }
                     
                     
-                    string sql = $"SELECT ID from {refTable} WHERE Name = '{name}'";
+                    string sql = $"SELECT ID from {refTable} WHERE Name = '{name}' AND Curr_Date ='{DateTime.Now.ToShortDateString()}'";
                     int UID = transact.SearchProfile(sql); //check if profile is in registered
 
-                    switch (SharedData.regType) {
+                    switch (SharedData.regType) { //testing type of registration (0-simple, 1-in/iout, 2-2 session)
                         case 0:
                             if (UID == 0) { //unique record
                                 try {
                                     transact.regtype1(name, DateTime.Now.ToShortDateString(), DateTime.Now.ToString("hh:mm:s tt"), position, position1);
-                                    lblName.Text = "Welcome";
-                                    scn.validSound("./audio/Correct Sound.wav");
-                                    lblVerified.Text = name.Replace("''", "'");
+                                    success(name);
                                 } catch (Exception) {error();}
                             } else {
-                                duplicate(name);
+                                duplicate(name, "Already Registered!");
                             }
 
                             break;
                         case 1:
+                            if (UID == 0) { //unique record
+                                try {
+                                    transact.regtype2(name, DateTime.Now.ToShortDateString(), DateTime.Now.ToString("hh:mm:s tt"),position, position1);
+                                    success(name);
+                                } catch (Exception) { error(); }
+                            } else { //update for time out
+                                transact.regtype2(name, DateTime.Now.ToShortDateString(), DateTime.Now.ToString("hh:mm:s tt"));
+                                duplicate(name, "Thank you for coming!");
+                            }
 
                             break;
                         case 2:
+                            if (UID == 0) { //unique record
+                                try {
+                                    transact.regtype2(name, DateTime.Now.ToShortDateString(), DateTime.Now.ToString("hh:mm:s tt"), position, position1);
+                                    success(name);
+                                } catch (Exception) { error(); }
+                            } else { //update for time out
+                                transact.regtype3(name, DateTime.Now.ToShortDateString(), DateTime.Now.ToString("hh:mm:s tt"));
+                                duplicate(name, "Thank you for coming!");
+                            }
                             break;
 
                     }
-
-                   /* if (UID== 0) { // ADD IF not registered
-                        sql = $"INSERT INTO {refTable}(FullName,Designation,Designation1,RDate,RTime) VALUES('{name}','{position}','{position1}','{DateTime.Now.ToShortDateString()}','{currDateTime:hh:mm:s tt}')";
-                        try {
-                            transact.AddRecord(sql);
-                            lblName.Text = "Welcome";
-                            scn.validSound("./audio/Correct Sound.wav");
-                            lblVerified.Text = name.Replace("''","'");
-                            
-                        } catch (Exception ex) {
-                            scn.validSound("./audio/Error Alert.wav");
-                            lblVerified.Text = "Please try again!";
-                        }
-
-                    } else {
-                        scn.validSound("./audio/Correct Sound.wav");
-                        lblName.Text = "Already Registered!";
-                        lblVerified.Text = name;
-                        
-                    }*/
-
 
                     if (timerRefresh.Enabled) {
                         timerRefresh.Stop();
@@ -177,10 +162,15 @@ namespace PrisaaAttendance {
             scn.validSound("./audio/Error Alert.wav");
             lblVerified.Text = "Please try again!";
         }
-        private void duplicate(string name) {
+        private void duplicate(string name,string txt) {
             scn.validSound("./audio/Correct Sound.wav");
-            lblName.Text = "Already Registered!";
+            lblName.Text = txt;
             lblVerified.Text = name;
+        }
+        private void success(string name) {
+            lblName.Text = "Welcome";
+            scn.validSound("./audio/Correct Sound.wav");
+            lblVerified.Text = name.Replace("''", "'");
         }
     }
 }

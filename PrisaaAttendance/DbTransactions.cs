@@ -1,53 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data;
 using System.Windows.Forms;
-using System.Collections;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PrisaaAttendance {
     
-   // Provider=Microsoft.ACE.OLEDB.12.0;Data Source = C:\Users\Ichan\Desktop\PrisaaAttendance\PrisaaAttendance\PrisaaAttendance\bin\Debug\Attendance.accdb
     public class DbTransactions {
         OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source = .\\Attendance.accdb; Mode=ReadWrite");
         DataTable dtable;
         ScannerImplementation sc = new ScannerImplementation();
         
-
+        public void dbError(string txt) {
+            string warning = "";
+            if (txt.Contains("No value given")) {
+                warning = "Required fields are missing";
+            }else if(txt.Contains("syntax error")) {
+                warning = "Query is incorrect";
+            }else if (txt.Contains("duplicate")) {
+                warning = "Duplicate entry detected! This record is already existing";
+            } else {
+                warning = "An error occured!";
+            }
+            MessageBox.Show(warning, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         public void AddRecord(string sql) {
-            OleDbCommand dbCommand = new OleDbCommand();
-            dbCommand.Connection = conn;
-            dbCommand.CommandText = sql;
-            try {
+            if (conn.State == ConnectionState.Closed) {
                 conn.Open();
-                dbCommand.ExecuteNonQuery();
-                conn.Close();
-            } catch(Exception ex) {
-                MessageBox.Show(ex.Message);
-                conn.Close();
             }
             
-        }
-        public void UpdateRecord(string sql) {
-            OleDbCommand dbCommand = new OleDbCommand();
-            dbCommand.Connection = conn;
-            dbCommand.CommandText = sql;
-
-            try {
-                conn.Open();
-                dbCommand.ExecuteNonQuery();
-                conn.Close();
-            } catch (Exception ex) {
-                MessageBox.Show(ex.Message);
-                conn.Close();
+            using (OleDbCommand dbCommand = new OleDbCommand(sql, conn)) {
+                try {
+                    dbCommand.ExecuteNonQuery();
+                } catch (Exception ex) {
+                    dbError(ex.Message);
+                }
             }
         }
         public int SearchProfile(string sql) {
-           // string sql = $"SELECT ID from Profiles WHERE Name = '{item}'";
             OleDbDataAdapter da = new OleDbDataAdapter(sql, conn);
             dtable = new DataTable();
             da.Fill(dtable);
@@ -57,10 +46,7 @@ namespace PrisaaAttendance {
                     return (int)row["ID"];
                 }
             }
-
             return 0;
-
-
         }
 
         public DataTable fetch_rowData(string q) {
@@ -78,21 +64,56 @@ namespace PrisaaAttendance {
 
 
         public void regtype1(string name, string curr_date, string curr_time, string info = "", string details = "") {
-
-             string sql = $"INSERT INTO {SharedData.tableRef}(Name,Curr_Date,Time_in,Info,Details) VALUES('{name}','{curr_date}','{curr_time}','{info}','{details}')";
-
-            /* string sql = $"INSERT INTO {SharedData.tableRef}(Name,Curr_Date,Time_in,Info,Details)VALUES(@name,@date,@time,@info,@details)";
-             using (OleDbCommand cmd = new OleDbCommand(sql, conn)) {
-                 cmd.Parameters.AddWithValue("@name", string.IsNullOrEmpty(name)? (object)DBNull.Value: name);
-                 cmd.Parameters.AddWithValue("@date", string.IsNullOrEmpty(curr_date)?(object)DBNull.Value: curr_date);
-                 cmd.Parameters.AddWithValue("@time", string.IsNullOrEmpty(curr_time) ? (object)DBNull.Value : curr_time);
-                 cmd.Parameters.AddWithValue("@info", string.IsNullOrEmpty(info) ? (object)DBNull.Value : info);
-                 cmd.Parameters.AddWithValue("@details", string.IsNullOrEmpty(details) ? (object)DBNull.Value : details);
-                // cmd.ExecuteNonQuery();
-             }*/
+            string sql = $"INSERT INTO {SharedData.tableRef}(Name,Curr_Date,Time_in,Info,Details) VALUES('{name}','{curr_date}','{curr_time}','{info}','{details}')";
             AddRecord(sql);
+        }
+
+        public void regtype2(string name, string curr_date, string curr_time,string info = "", string details = "") {
+            string sql = $"INSERT INTO {SharedData.tableRef}(Name,Curr_Date,In0,Info,Details) VALUES('{name}','{curr_date}','{curr_time}','{info}','{details}')";
+            AddRecord(sql);  
+        }
+
+        public void regtype2(string name, string curr_date, string curr_time) {
+            string sql = $"UPDATE {SharedData.tableRef} SET Out0='{curr_time}' WHERE Name = '{name}' AND Curr_Date = '{curr_date}'";
+            AddRecord(sql);
+        }
+
+
+        public void regtype3(string name, string curr_date, string curr_time) {
+            string sql = $"SELECT * FROM {SharedData.tableRef}  WHERE Name = '{name}' AND Curr_Date = '{curr_date}'";
+
+            if(conn.State == ConnectionState.Closed) {
+                conn.Open();
+            }
             
-          //  return sql;
+            using (OleDbCommand cmd = new OleDbCommand(sql, conn)) {
+                var reader = cmd.ExecuteReader();
+
+                if (reader.Read()) {
+                    string out0 = reader["Out0"]?.ToString();
+                    string in1 = reader["In1"]?.ToString();
+                    string out1 = reader["Out1"]?.ToString();
+                    string field = "";
+
+                    if (string.IsNullOrEmpty(out0)) {
+                        field = "Out0";
+                    }else if (string.IsNullOrEmpty(in1)) {
+                        field = "In1";
+                    }else if (string.IsNullOrEmpty(out1)) {
+                        field = "Out1";
+                    } else {
+                        MessageBox.Show("Slots are filled","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    }
+
+                    if(!string.IsNullOrEmpty(field)){
+                        string q = $"UPDATE {SharedData.tableRef} SET {field} = '{curr_time}' WHERE Name = '{name}' AND Curr_Date = '{curr_date}' ";
+                        conn.Close();
+                        AddRecord(q);
+                    }
+
+                }
+
+            }
         }
 
 
@@ -103,39 +124,60 @@ namespace PrisaaAttendance {
                     return true;
                 }
             }
-
             return false;
         }
 
-        public void createTable(string query, string tab) {
-            conn.Open();
-            if (!isExisting(tab)) {
-                OleDbCommand dbCommand = new OleDbCommand(query, conn);
+        public int getColumnCount(string tab) {
+            int count = 0;
+            DataTable schemaTab = conn.GetSchema("Columns",new string[] {null, null, tab, null});
+            foreach(DataRow row in schemaTab.Rows) {
+                count++;
+            }
+            return count;
+        }
 
-                try {
-                    
-                    dbCommand.ExecuteNonQuery();
-                    MessageBox.Show("Table created successfully","Table creation",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                    SharedData.tableRef = tab;
-                    //sc.setReferenceTable(tab);
-                } catch (Exception ex) {
-                    MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+
+        public void createTable(string query, string tab) {
+            
+            if(conn.State == ConnectionState.Closed) {
+                conn.Open();
+            }
+            if (!isExisting(tab)) {
+                using (OleDbCommand dbCommand = new OleDbCommand(query, conn)) {
+                    try {
+
+                        dbCommand.ExecuteNonQuery();
+                        MessageBox.Show("Table created successfully", "Table creation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SharedData.tableRef = tab;
+                    } catch (Exception ex) {
+                        dbError(ex.Message);
+                    }
                 }
+
+                    
             } else { 
                 DialogResult res= MessageBox.Show("Table is already existing!\nDo you want to use the existing table?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (res == DialogResult.OK) {
                     SharedData.tableRef = tab;
-                   // sc.setReferenceTable(tab);
+                    int i = getColumnCount(SharedData.tableRef);
+                    switch (i) {
+                        case 6:
+                            SharedData.regType=0;
+                            break;
+                        case 7:
+                            SharedData.regType = 1;
+                            break;
+                        case 9:
+                            SharedData.regType = 2;
+                            break;
+                    }
                 }
-
             }
-            conn.Close();
         }
 
         public void simpleTable(string tab) {
             string query = $"CREATE TABLE {tab}(ID autoincrement primary key, Name varchar(100),Info varchar(100), Details varchar(200), Curr_Date varchar(32), Time_in datetime)"; 
             createTable(query, tab);
-            SharedData.query = $"INSERT INTO {tab} (Name,Curr_Date,Time_in)";
         }
 
         public void sessionTable(string tab) {
