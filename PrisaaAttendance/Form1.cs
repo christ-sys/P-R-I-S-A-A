@@ -172,5 +172,10 @@ namespace PrisaaAttendance {
             scn.validSound("./audio/Correct Sound.wav");
             lblVerified.Text = name.Replace("''", "'");
         }
+
+        private void btnDashboard_Click(object sender, EventArgs e) {
+            Dashboard dashbrd = new Dashboard();
+            dashbrd.ShowDialog();
+        }
     }
 }

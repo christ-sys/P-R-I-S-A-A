@@ -79,6 +79,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="DbTransactions.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -103,6 +109,9 @@
       <DependentUpon>SettingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SharedData.cs" />
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +174,7 @@
     <None Include="bin\Debug\img\PrisaaBanner bg.png" />
     <None Include="bin\Debug\img\configuration.png" />
     <None Include="bin\Debug\img\setting.png" />
+    <None Include="bin\Debug\img\dashboard.png" />
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
