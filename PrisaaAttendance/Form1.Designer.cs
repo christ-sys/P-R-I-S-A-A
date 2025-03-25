@@ -41,6 +41,7 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.txtQrContent = new System.Windows.Forms.TextBox();
             this.lblDate = new System.Windows.Forms.Label();
+            this.btnDashboard = new System.Windows.Forms.Button();
             this.btnSetting = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnRegister = new System.Windows.Forms.Button();
@@ -111,6 +112,7 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnDashboard);
             this.panel3.Controls.Add(this.btnSetting);
             this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.btnStart);
@@ -236,6 +238,22 @@
             this.lblDate.Size = new System.Drawing.Size(472, 37);
             this.lblDate.TabIndex = 6;
             this.lblDate.Text = "September 11,2024";
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDashboard.BackColor = System.Drawing.Color.Transparent;
+            this.btnDashboard.BackgroundImage = global::PrisaaAttendance.Properties.Resources.dashboard;
+            this.btnDashboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnDashboard.Location = new System.Drawing.Point(88, 489);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(32, 31);
+            this.btnDashboard.TabIndex = 10;
+            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnDashboard.UseVisualStyleBackColor = false;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // btnSetting
             // 
@@ -371,6 +389,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnSetting;
+        private System.Windows.Forms.Button btnDashboard;
     }
 }
 

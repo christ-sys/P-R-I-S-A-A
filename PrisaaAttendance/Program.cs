@@ -14,7 +14,7 @@ namespace PrisaaAttendance {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMain());
-            //Application.Run(new SettingForm());
+           // Application.Run(new Dashboard());
         }
     }
 }
