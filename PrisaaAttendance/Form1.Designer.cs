@@ -30,7 +30,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnDashboard = new System.Windows.Forms.Button();
+            this.btnSetting = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.userScrn = new System.Windows.Forms.PictureBox();
             this.timerTimeRef = new System.Windows.Forms.Timer(this.components);
             this.timerRefresh = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
@@ -41,21 +48,15 @@
             this.lblTime = new System.Windows.Forms.Label();
             this.txtQrContent = new System.Windows.Forms.TextBox();
             this.lblDate = new System.Windows.Forms.Label();
-            this.btnDashboard = new System.Windows.Forms.Button();
-            this.btnSetting = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btnRegister = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.userScrn = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tipBtnHover = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrisaaLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnStart
@@ -63,11 +64,13 @@
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnStart.AutoSize = true;
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(26, 432);
+            this.btnStart.Location = new System.Drawing.Point(26, 424);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(354, 43);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
+            this.tipBtnHover.SetToolTip(this.btnStart, "Start Camera");
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -108,6 +111,17 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "University Of Cagayan Valley";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pictureBox1.Image = global::PrisaaAttendance.Properties.Resources._201666_2256_43793_copy;
+            this.pictureBox1.Location = new System.Drawing.Point(6, -2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(42, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -125,6 +139,93 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(399, 533);
             this.panel3.TabIndex = 10;
+            // 
+            // btnDashboard
+            // 
+            this.btnDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDashboard.BackColor = System.Drawing.Color.Transparent;
+            this.btnDashboard.BackgroundImage = global::PrisaaAttendance.Properties.Resources.dashboard;
+            this.btnDashboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnDashboard.Location = new System.Drawing.Point(103, 489);
+            this.btnDashboard.Name = "btnDashboard";
+            this.btnDashboard.Size = new System.Drawing.Size(32, 31);
+            this.btnDashboard.TabIndex = 10;
+            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tipBtnHover.SetToolTip(this.btnDashboard, "Dashboard");
+            this.btnDashboard.UseVisualStyleBackColor = false;
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetting.BackgroundImage = global::PrisaaAttendance.Properties.Resources.setting;
+            this.btnSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSetting.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnSetting.Location = new System.Drawing.Point(65, 489);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(32, 31);
+            this.btnSetting.TabIndex = 9;
+            this.btnSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tipBtnHover.SetToolTip(this.btnSetting, "Configure table");
+            this.btnSetting.UseVisualStyleBackColor = false;
+            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
+            this.pictureBox2.Location = new System.Drawing.Point(52, 28);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(41, 32);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 8;
+            this.pictureBox2.TabStop = false;
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRegister.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.BackgroundImage = global::PrisaaAttendance.Properties.Resources.add;
+            this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRegister.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btnRegister.Location = new System.Drawing.Point(27, 489);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(32, 31);
+            this.btnRegister.TabIndex = 7;
+            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tipBtnHover.SetToolTip(this.btnRegister, "Generate QR");
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.label1.Location = new System.Drawing.Point(8, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(15, 24);
+            this.label1.TabIndex = 3;
+            this.label1.Text = ".";
+            // 
+            // userScrn
+            // 
+            this.userScrn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.userScrn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.userScrn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.userScrn.Image = global::PrisaaAttendance.Properties.Resources.Web;
+            this.userScrn.InitialImage = null;
+            this.userScrn.Location = new System.Drawing.Point(26, 77);
+            this.userScrn.Name = "userScrn";
+            this.userScrn.Size = new System.Drawing.Size(354, 336);
+            this.userScrn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userScrn.TabIndex = 0;
+            this.userScrn.TabStop = false;
             // 
             // timerTimeRef
             // 
@@ -239,101 +340,6 @@
             this.lblDate.TabIndex = 6;
             this.lblDate.Text = "September 11,2024";
             // 
-            // btnDashboard
-            // 
-            this.btnDashboard.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDashboard.BackColor = System.Drawing.Color.Transparent;
-            this.btnDashboard.BackgroundImage = global::PrisaaAttendance.Properties.Resources.dashboard;
-            this.btnDashboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDashboard.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnDashboard.Location = new System.Drawing.Point(88, 489);
-            this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(32, 31);
-            this.btnDashboard.TabIndex = 10;
-            this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnDashboard.UseVisualStyleBackColor = false;
-            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
-            this.btnSetting.BackgroundImage = global::PrisaaAttendance.Properties.Resources.setting;
-            this.btnSetting.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSetting.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnSetting.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnSetting.Location = new System.Drawing.Point(50, 489);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(32, 31);
-            this.btnSetting.TabIndex = 9;
-            this.btnSetting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSetting.UseVisualStyleBackColor = false;
-            this.btnSetting.Click += new System.EventHandler(this.btnSetting_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
-            this.pictureBox2.Location = new System.Drawing.Point(52, 28);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(41, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 8;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btnRegister
-            // 
-            this.btnRegister.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRegister.BackColor = System.Drawing.Color.Transparent;
-            this.btnRegister.BackgroundImage = global::PrisaaAttendance.Properties.Resources.add;
-            this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRegister.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnRegister.Location = new System.Drawing.Point(12, 488);
-            this.btnRegister.Name = "btnRegister";
-            this.btnRegister.Size = new System.Drawing.Size(32, 31);
-            this.btnRegister.TabIndex = 7;
-            this.btnRegister.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRegister.UseVisualStyleBackColor = false;
-            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Image = global::PrisaaAttendance.Properties.Resources.camera_viewfinder;
-            this.label1.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label1.Location = new System.Drawing.Point(8, 60);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(15, 24);
-            this.label1.TabIndex = 3;
-            this.label1.Text = ".";
-            // 
-            // userScrn
-            // 
-            this.userScrn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.userScrn.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.userScrn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.userScrn.Image = global::PrisaaAttendance.Properties.Resources.Web;
-            this.userScrn.InitialImage = null;
-            this.userScrn.Location = new System.Drawing.Point(26, 77);
-            this.userScrn.Name = "userScrn";
-            this.userScrn.Size = new System.Drawing.Size(354, 336);
-            this.userScrn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userScrn.TabIndex = 0;
-            this.userScrn.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.pictureBox1.Image = global::PrisaaAttendance.Properties.Resources._201666_2256_43793_copy;
-            this.pictureBox1.Location = new System.Drawing.Point(6, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(42, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,15 +358,15 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PrisaaLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userScrn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -390,6 +396,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnSetting;
         private System.Windows.Forms.Button btnDashboard;
+        private System.Windows.Forms.ToolTip tipBtnHover;
     }
 }
 
