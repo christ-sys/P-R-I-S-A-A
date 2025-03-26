@@ -136,6 +136,22 @@ namespace PrisaaAttendance {
             return count;
         }
 
+        public int getRegCount(string sql) {
+            int count = 0;
+
+            if(conn.State == ConnectionState.Closed) {
+                conn.Open();
+            }
+
+            using(OleDbCommand cmd = new OleDbCommand(sql, conn)) {
+                count = Convert.ToInt32(cmd.ExecuteScalar());
+            }
+
+            return count;
+        }
+
+        
+
 
         public void createTable(string query, string tab) {
             
