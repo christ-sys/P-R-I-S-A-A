@@ -17,13 +17,21 @@ using ZXing.Rendering;
 namespace PrisaaAttendance {
     public partial class RegisterAccount : Form {
         Bitmap bitmap;
+        private String path;
         public RegisterAccount() {
             InitializeComponent();
+            path = Path.Combine(Application.StartupPath, "Generated QR");
+
+            // Create directory if it doesn't exist
+            if (!Directory.Exists(path)) {
+                Directory.CreateDirectory(path);
+            }
+
         }
 
         private void BtnGenerateQr_Click(object sender, EventArgs e) {
             BarcodeWriter barcodeWriter = new BarcodeWriter();
-            EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500, Margin = 0, PureBarcode = false };
+            EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500, Margin = 1, PureBarcode = false };
             encodingOptions.Hints.Add(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
             barcodeWriter.Renderer = new BitmapRenderer();
             barcodeWriter.Options = encodingOptions;
@@ -38,24 +46,23 @@ namespace PrisaaAttendance {
         }
 
         private void BtnDownload_Click(object sender, EventArgs e) {
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Filter = "Image file|*.jpeg";
-            saveDialog.Title = "Save an image";
-            String txtName = TxtInfo.Lines[0];
-            saveDialog.FileName = $"{txtName}.jpg";
-            String path = "../../../Generated QR";
-            if (!Directory.Exists(path)) {
-                Directory.CreateDirectory(path);
+            
+
+            using (SaveFileDialog saveDialog = new SaveFileDialog()) {
+                saveDialog.Filter = "Image file|*.jpeg";
+                saveDialog.Title = "Save an image";
+                String txtName = TxtInfo.Lines[0];
+                saveDialog.FileName = $"{txtName}.jpg";
+                saveDialog.InitialDirectory =path;
+                
+                DialogResult res = saveDialog.ShowDialog();
+
+                if (saveDialog.FileName != "" && res == DialogResult.OK) {
+                    bitmap.Save(saveDialog.FileName.ToString(), ImageFormat.Jpeg);
+                }
+
             }
             
-            Directory.SetCurrentDirectory(path);
-            saveDialog.InitialDirectory = $"{Directory.GetCurrentDirectory()}";
-            DialogResult res;
-            res = saveDialog.ShowDialog();
-            
-            if (saveDialog.FileName != "" && res == DialogResult.OK) {
-                bitmap.Save(saveDialog.FileName.ToString(), ImageFormat.Jpeg);
-            }
         }
 
 
@@ -71,8 +78,5 @@ namespace PrisaaAttendance {
             PicQr.Image = null;
         }
 
-        private void BtnSave_Click(object sender, EventArgs e) {
-
-        }
     }
 }
