@@ -112,7 +112,6 @@
             this.BtnSave.Text = "Save";
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Visible = false;
-            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // BtnClear
             // 
