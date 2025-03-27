@@ -31,7 +31,7 @@ namespace PrisaaAttendance {
                 foreach (DataRow row in rec.Rows) {
                     sql = $"SELECT COUNT(*) FROM {SharedData.tableRef} WHERE Info = '{row["Info"].ToString()}'";
                     if (string.IsNullOrEmpty(row["Info"].ToString())) {
-                        sql = $"SELECT COUNT(*) FROM {SharedData.tableRef} WHERE Info IS NULL";
+                        sql = $"SELECT COUNT(*) FROM {SharedData.tableRef} WHERE Info IS NULL OR Info=''";
                     }
                     x = transact.getRegCount(sql);
                     addGrb(row["Info"].ToString(), x);

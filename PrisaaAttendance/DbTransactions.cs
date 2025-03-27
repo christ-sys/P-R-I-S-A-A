@@ -2,6 +2,8 @@
 using System.Data.OleDb;
 using System.Data;
 using System.Windows.Forms;
+using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace PrisaaAttendance {
     
@@ -136,6 +138,26 @@ namespace PrisaaAttendance {
             return count;
         }
 
+        public List<string> getTableNames() {
+
+            conn.Open();
+            DataTable schema = conn.GetSchema("Tables");
+            List<string> tables = new List<string>();
+
+            
+            foreach (DataRow row in schema.Rows) {
+                string tableType = row["TABLE_TYPE"].ToString();
+                string tableName = row["TABLE_NAME"].ToString();
+
+                // Filter for user tables (not system tables or views)
+                if (tableType == "TABLE" && !tableName.StartsWith("MSys")) {
+                    tables.Add(tableName);
+                }
+            }
+            conn.Close();
+            return tables;
+        }
+
         public int getRegCount(string sql) {
             int count = 0;
 
@@ -174,21 +196,31 @@ namespace PrisaaAttendance {
             } else { 
                 DialogResult res= MessageBox.Show("Table is already existing!\nDo you want to use the existing table?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
                 if (res == DialogResult.OK) {
-                    SharedData.tableRef = tab;
-                    int i = getColumnCount(SharedData.tableRef);
-                    switch (i) {
-                        case 6:
-                            SharedData.regType=0;
-                            break;
-                        case 7:
-                            SharedData.regType = 1;
-                            break;
-                        case 9:
-                            SharedData.regType = 2;
-                            break;
-                    }
+                    identifyRegType(tab);
                 }
             }
+        }
+
+        public void identifyRegType(string tab) {
+            if (conn.State == ConnectionState.Closed) {
+                conn.Open();
+            }
+
+            SharedData.tableRef = tab;
+            int i = getColumnCount(SharedData.tableRef);
+            switch (i) {
+                case 6:
+                    SharedData.regType = 0;
+                    break;
+                case 7:
+                    SharedData.regType = 1;
+                    break;
+                case 9:
+                    SharedData.regType = 2;
+                    break;
+            }
+
+            conn.Close();
         }
 
         public void simpleTable(string tab) {
